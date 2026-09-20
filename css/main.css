@@ -1,6 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+
+  background:
+    linear-gradient(rgba(25, 10, 25, 0.45), rgba(25, 10, 25, 0.55)),
+    url("../images/background.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 40px;
+
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Main title */
 h2 {
   text-align: center;
+
+  margin-bottom: 5px;
+
+  font-size: 2rem;
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  color: white;
+
+  text-shadow: 0 0 12px rgba(255, 120, 220, 0.5);
 }
+
+/* Your name */
 h3 {
   text-align: center;
+
+  margin-top: 0;
+  margin-bottom: 50px;
+
+  font-size: 1rem;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  letter-spacing: 2px;
+}
+
+/* Section titles */
+h4 {
+  margin-top: 35px;
+  margin-bottom: 8px;
+
+  color: #f3c4e7;
+
+  font-size: 0.9rem;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+/* Paragraphs */
+p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Lists */
+ul {
+  padding-left: 25px;
+  margin-top: 8px;
+}
+
+li {
+  margin: 7px 0;
+}
+
+/* Links */
+a {
+  color: #f3a9dc;
+
+  text-decoration: none;
+
+  transition: 0.2s;
+}
+
+a:hover {
+  color: white;
+  text-shadow: 0 0 8px #ff7edb;
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.8rem;
+
+  letter-spacing: 1px;
 }
