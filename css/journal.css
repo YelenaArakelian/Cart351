@@ -5,6 +5,16 @@ h3 {
   text-align: center;
 }
 
+body {
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+}
+
 main {
   background: #faebf8;
   padding: 10px;
