@@ -1,11 +1,22 @@
-<!-- will be a child of base-->
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-   
-     <h3>** Welcome  **</h3>
-    <section>
-        <!-- stuff goes in here -->
-         <p> This is the content for the index page</p>
-    </section>
+<section class="home-page">
+  <div class="home-content">
+    <p class="home-label">CART 351 — NASA IMAGE ARCHIVE</p>
+
+    <h1>EXPLORE THE<br />UNIVERSE</h1>
+
+    <p class="home-description">
+      Discover the beauty of space through NASA's image collection. Search for
+      planets, stars, galaxies, and more.
+    </p>
+
+    <div class="home-links">
+      <a href="{{ url_for('t1') }}" class="home-button"> EXPLORE IMAGES → </a>
+
+      <a href="{{ url_for('t2') }}" class="home-secondary"> VIEW GALLERY ↗ </a>
+    </div>
+  </div>
+</section>
+
 {% endblock %}

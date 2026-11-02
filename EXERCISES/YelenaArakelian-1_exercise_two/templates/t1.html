@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="search-page">
+  <h2>NASA Image Search</h2>
+  <p>Explore the universe through NASA's image collection.</p>
+
+  <!-- Search form -->
+  <form action="{{ url_for('getSearchCriteria') }}" method="GET">
+    <label for="search">What would you like to explore?</label>
+
+    <div class="search-row">
+      <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Try: Moon, Mars, Earth..."
+        required
+      />
+
+      <button type="submit">Search</button>
+    </div>
+  </form>
+
+  <!-- Search result -->
+  {% if have_results %}
+
+  <div class="results single-result">
+    <h3>Search Result</h3>
+
+    <img src="{{ imgPath }}" alt="NASA Image" />
+
+    <p>{{ description }}</p>
+  </div>
+
+  {% endif %}
+</section>
+
+{% endblock %}

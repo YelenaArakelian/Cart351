@@ -1,26 +1,58 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>NASA Image Explorer</title>
+
+    <!-- CSS -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/base.css') }}"
+    />
+
+    <!-- Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../static/css/base.css" />
-    <title>CART 351 EX TWO</title>
   </head>
+
   <body>
+    <!-- Galaxy background video -->
+    <div class="video-background">
+      <video autoplay muted loop playsinline>
+        <source
+          src="{{ url_for('static', filename='videos/Background.mp4') }}"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <!-- Overlay -->
+    <div class="video-overlay"></div>
+
+    <!-- Header -->
     <header>
-      <h2>CART 351 EX TWO</h2>
-      <nav>
-        <ul>
-          <li><a href="{{url_for('index')}}">Home </a></li>
-          <li><a href="{{ url_for('t1') }}">NASA Search</a></li>
-        </ul>
-      </nav>
+      <h2>NASA Image Explorer</h2>
     </header>
-    <main>{% block content %}{% endblock %}</main>
-    <footer>footer info ** footer info **</footer>
+
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('t1') }}">NASA Search</a></li>
+        <li><a href="{{ url_for('t2') }}">NASA Gallery</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main>{% block content %} {% endblock %}</main>
+
+    <!-- Footer -->
+    <footer>
+      <p>CART 351 | NASA Image Explorer | 2026</p>
+    </footer>
   </body>
 </html>

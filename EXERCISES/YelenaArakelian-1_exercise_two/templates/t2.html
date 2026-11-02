@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+
+<section class="search-page">
+  <h2>NASA Image Gallery</h2>
+  <p>Discover images from NASA's collection.</p>
+
+  <!-- Search form -->
+  <form action="{{ url_for('getSearchCriteria_adv') }}" method="GET">
+    <label for="search">What would you like to explore?</label>
+
+    <div class="search-row">
+      <input
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Try: Saturn, Jupiter, Galaxy..."
+        required
+      />
+
+      <button type="submit">Search</button>
+    </div>
+  </form>
+
+  <!-- Gallery results -->
+  {% if images is defined %}
+
+  <div class="results gallery-results">
+    <h3>Search Results</h3>
+
+    {% if images %}
+
+    <div class="image-gallery">
+      {% for image in images %}
+
+      <img src="{{ image }}" alt="NASA Image" loading="lazy" />
+
+      {% endfor %}
+    </div>
+
+    {% else %}
+
+    <p>No images found. Try another search.</p>
+
+    {% endif %}
+  </div>
+
+  {% endif %}
+</section>
+
+{% endblock %}
