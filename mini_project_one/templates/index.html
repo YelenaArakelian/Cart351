@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Constellations of Strangers</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Homepage -->
+    <main id="home">
+      <h1>Constellations of Strangers</h1>
+
+      <p>Somewhere, someone feels the same way you do.</p>
+
+      <button id="leaveStarBtn">Leave a Star</button>
+    </main>
+
+    <!-- Star submission form -->
+    <section id="starFormSection" hidden>
+      <h2>Leave a Star</h2>
+
+      <p>Share an anonymous thought with the sky.</p>
+
+      <form id="starForm">
+        <label for="thought">What's on your mind?</label>
+
+        <textarea
+          id="thought"
+          name="thought"
+          placeholder="Write your thoughts here..."
+          maxlength="200"
+          required
+        ></textarea>
+
+        <label for="emotion">Choose an emotion:</label>
+
+        <select id="emotion" name="emotion" required>
+          <option value="">Select an emotion</option>
+          <option value="hope">Hope</option>
+          <option value="joy">Joy</option>
+          <option value="nostalgia">Nostalgia</option>
+          <option value="sadness">Sadness</option>
+          <option value="loneliness">Loneliness</option>
+          <option value="calm">Calm</option>
+        </select>
+
+        <button type="submit">Add to the Sky</button>
+      </form>
+
+      <button id="backBtn">Back to Home</button>
+
+      <!-- Test collective data display -->
+      <div id="savedStars">
+        <h3>Stars in Our Sky</h3>
+        <ul id="starsList"></ul>
+      </div>
+
+      <p id="formMessage" role="status"></p>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
