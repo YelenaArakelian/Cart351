@@ -1,14 +1,7 @@
-/* ========================================
-   CONSTELLATIONS OF STRANGERS
-   Main JavaScript
-======================================== */
+/* Constellations of Strangers */
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ========================================
-       HTML ELEMENTS
-    ======================================== */
-
-  // Main sections
+  // Pages
   const home = document.getElementById("home");
   const formSection = document.getElementById("starFormSection");
   const skySection = document.getElementById("skySection");
@@ -20,14 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const skyBackBtn = document.getElementById("skyBackBtn");
   const skyLeaveBtn = document.getElementById("skyLeaveBtn");
 
-  // Form elements
+  // Form
   const starForm = document.getElementById("starForm");
   const thoughtInput = document.getElementById("thought");
   const emotionInput = document.getElementById("emotion");
   const formMessage = document.getElementById("formMessage");
   const starsList = document.getElementById("starsList");
 
-  // Collective sky elements
+  // Collective sky
   const starfield = document.getElementById("starfield");
   const starDetails = document.getElementById("starDetails");
   const selectedThought = document.getElementById("selectedThought");
@@ -35,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeDetailsBtn = document.getElementById("closeDetailsBtn");
   const skyMessage = document.getElementById("skyMessage");
 
-  // Check that all necessary HTML elements exist
   const requiredElements = {
     home,
     formSection,
@@ -62,15 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .map(([name]) => name);
 
   if (missingElements.length > 0) {
-    console.error("Missing HTML elements:", missingElements.join(", "));
-
+    console.error("Missing HTML elements:", missingElements);
     return;
   }
 
-  /* ========================================
-       EMOTION COLORS
-    ======================================== */
-
+  // Colors for each emotion
   const emotionColors = {
     hope: "#f5d995",
     joy: "#ffd4a8",
@@ -80,62 +68,48 @@ document.addEventListener("DOMContentLoaded", () => {
     calm: "#91ded5",
   };
 
-  /* ========================================
-       NAVIGATION
-    ======================================== */
+  // ID of the most recently submitted star
+  let newStarId = null;
 
-  // Display only the selected section
+  // Show one page at a time
   function showSection(section) {
     home.hidden = true;
     formSection.hidden = true;
     skySection.hidden = true;
 
     section.hidden = false;
-
-    // Close star details when changing sections
     starDetails.hidden = true;
 
     window.scrollTo(0, 0);
   }
 
-  // Homepage -> Submission form
+  // Navigation
   leaveStarBtn.addEventListener("click", () => {
     showSection(formSection);
   });
 
-  // Homepage -> Collective sky
   exploreSkyBtn.addEventListener("click", async () => {
     showSection(skySection);
     await loadStars();
   });
 
-  // Submission form -> Homepage
   backBtn.addEventListener("click", () => {
     showSection(home);
   });
 
-  // Collective sky -> Homepage
   skyBackBtn.addEventListener("click", () => {
     showSection(home);
   });
 
-  // Collective sky -> Submission form
   skyLeaveBtn.addEventListener("click", () => {
     showSection(formSection);
   });
 
-  // Close selected star information
   closeDetailsBtn.addEventListener("click", () => {
     starDetails.hidden = true;
   });
 
-  /* ========================================
-       STAR POSITION ALGORITHM
-    ======================================== */
-
-  // Generate a repeatable number from a string.
-  // This allows each star to keep the same location.
-
+  // Generate a consistent position for each star
   function hashString(text) {
     let hash = 0;
 
@@ -146,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return hash;
   }
 
-  // Calculate each star's position using its ID
   function getStarPosition(star, index) {
     const seed = hashString(star.id || String(index));
 
@@ -156,39 +129,32 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  /* ========================================
-       CREATE INTERACTIVE STARS
-    ======================================== */
-
-  function createStar(star, index) {
-    const position = getStarPosition(star, index);
-
-    // Create a clickable star
+  // Create a clickable star
+  function createStar(star, index, position) {
     const element = document.createElement("button");
 
     element.type = "button";
     element.className = "data-star";
 
-    // Place the star in the sky
     element.style.left = position.x + "%";
     element.style.top = position.y + "%";
 
-    // Set star color based on emotion
     element.style.setProperty(
       "--star-color",
       emotionColors[star.emotion] || "#ffffff",
     );
 
-    // Give each star a slightly different animation delay
-    element.style.animationDelay = (index % 7) * 0.35 + "s";
+    // Regular stars have slightly different twinkle timing
+    if (star.id !== newStarId) {
+      element.style.animationDelay = (index % 7) * 0.35 + "s";
+    }
 
-    // Accessibility label
     element.setAttribute(
       "aria-label",
       "Read a stranger's " + star.emotion + " thought",
     );
 
-    // Show the stored thought when clicked
+    // Open the selected thought
     element.addEventListener("click", () => {
       selectedThought.textContent = star.thought;
 
@@ -203,15 +169,127 @@ document.addEventListener("DOMContentLoaded", () => {
     return element;
   }
 
-  /* ========================================
-       GET DATA FROM FLASK
-    ======================================== */
+  // Animate a new star rising into the sky
+  function animateNewStar(element) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
+    element.animate(
+      [
+        {
+          transform: "translate(-50%, 70vh) scale(0.3)",
+          opacity: 0,
+        },
+        {
+          transform: "translate(-50%, -65%) scale(1.5)",
+          opacity: 1,
+          offset: 0.85,
+        },
+        {
+          transform: "translate(-50%, -50%) scale(1)",
+          opacity: 1,
+        },
+      ],
+      {
+        duration: 2200,
+        easing: "ease-out",
+        fill: "none",
+      },
+    );
+  }
+
+  // Distance between two stars
+  function getDistance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  // Create a layer for the constellation lines
+  function createConnectionLayer() {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("preserveAspectRatio", "none");
+    svg.classList.add("constellation-lines");
+
+    return svg;
+  }
+
+  // Draw a connection between two stars
+  function drawConnection(svg, first, second, emotion) {
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+    line.setAttribute("x1", first.x);
+    line.setAttribute("y1", first.y);
+    line.setAttribute("x2", second.x);
+    line.setAttribute("y2", second.y);
+
+    line.setAttribute("stroke", emotionColors[emotion] || "#ffffff");
+
+    line.setAttribute("stroke-width", "0.16");
+    line.setAttribute("stroke-opacity", "0.4");
+
+    line.classList.add("constellation-line");
+
+    svg.appendChild(line);
+  }
+
+  // Connect stars that share an emotion
+  function createConstellations(starsWithPositions) {
+    const svg = createConnectionLayer();
+    const groups = {};
+
+    // Group stars by emotion
+    starsWithPositions.forEach((item) => {
+      const emotion = item.star.emotion;
+
+      if (!groups[emotion]) {
+        groups[emotion] = [];
+      }
+
+      groups[emotion].push(item);
+    });
+
+    // Connect each star to the nearest connected star
+    Object.entries(groups).forEach(([emotion, group]) => {
+      if (group.length < 2) {
+        return;
+      }
+
+      const connected = [group[0]];
+
+      for (let i = 1; i < group.length; i++) {
+        const current = group[i];
+
+        let nearest = connected[0];
+        let shortestDistance = Infinity;
+
+        connected.forEach((candidate) => {
+          const distance = getDistance(current.position, candidate.position);
+
+          if (distance < shortestDistance) {
+            shortestDistance = distance;
+            nearest = candidate;
+          }
+        });
+
+        drawConnection(svg, current.position, nearest.position, emotion);
+
+        connected.push(current);
+      }
+    });
+
+    return svg;
+  }
+
+  // Retrieve submissions from Flask
   async function loadStars() {
     skyMessage.textContent = "";
 
     try {
-      // FETCH request to retrieve JSON data
       const response = await fetch("/api/stars");
 
       if (!response.ok) {
@@ -220,34 +298,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const stars = await response.json();
 
-      // Clear previously displayed stars
       starfield.replaceChildren();
 
       if (starsList) {
         starsList.replaceChildren();
       }
 
-      // Handle an empty JSON file
       if (stars.length === 0) {
         skyMessage.textContent =
           "The sky is empty. Be the first to leave a star.";
-
         return;
       }
 
-      // Create a star for every saved submission
-      stars.forEach((star, index) => {
-        const element = createStar(star, index);
+      // Calculate star positions
+      const starsWithPositions = stars.map((star, index) => {
+        return {
+          star: star,
+          index: index,
+          position: getStarPosition(star, index),
+        };
+      });
+
+      // Draw connections behind the stars
+      const connectionLayer = createConstellations(starsWithPositions);
+
+      starfield.appendChild(connectionLayer);
+
+      // Add the stars to the sky
+      starsWithPositions.forEach((item) => {
+        const element = createStar(item.star, item.index, item.position);
 
         starfield.appendChild(element);
 
-        // Update temporary list if it exists
+        // Animate the newly submitted star
+        if (item.star.id === newStarId) {
+          requestAnimationFrame(() => {
+            animateNewStar(element);
+          });
+        }
+
+        // Update the original list
         if (starsList) {
-          const item = document.createElement("li");
+          const listItem = document.createElement("li");
 
-          item.textContent = `${star.emotion}: ${star.thought}`;
+          listItem.textContent = `${item.star.emotion}: ${item.star.thought}`;
 
-          starsList.appendChild(item);
+          starsList.appendChild(listItem);
         }
       });
     } catch (error) {
@@ -257,28 +353,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* ========================================
-       SAVE NEW SUBMISSION TO FLASK
-    ======================================== */
-
+  // Save a new thought
   starForm.addEventListener("submit", async (event) => {
-    // Prevent the form from refreshing the page
     event.preventDefault();
 
-    // Retrieve user input
     const thought = thoughtInput.value.trim();
     const emotion = emotionInput.value;
 
-    // Basic validation
     if (!thought || !emotion) {
       formMessage.textContent = "Please complete both fields.";
-
       return;
     }
 
     formMessage.textContent = "Saving your star...";
 
-    // Prevent duplicate submissions
     const submitBtn = starForm.querySelector('button[type="submit"]');
 
     if (submitBtn) {
@@ -286,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // FETCH request to send user input to Flask
+      // Send the submission to Flask
       const response = await fetch("/api/stars", {
         method: "POST",
 
@@ -306,35 +394,38 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(result.error || "Could not save your star.");
       }
 
-      // Clear the submission form
-      starForm.reset();
+      // Save the new star's ID for the animation
+      newStarId = result.star.id;
 
+      starForm.reset();
       formMessage.textContent = "";
 
       // Open the collective sky
       showSection(skySection);
 
-      // Retrieve updated submissions
+      // Load the stars and animate the new one
       await loadStars();
+
+      skyMessage.textContent =
+        "Your star has found its place in the sky. Somewhere, someone might feel the same way.";
+
+      newStarId = null;
+
+      newStarId = null;
     } catch (error) {
       console.error("Submission error:", error);
 
       formMessage.textContent = "Something went wrong. Please try again.";
     } finally {
-      // Enable submit button again
       if (submitBtn) {
         submitBtn.disabled = false;
       }
     }
   });
 
-  /* ========================================
-       INITIALIZE APPLICATION
-    ======================================== */
-
   // Start on the homepage
   showSection(home);
 
-  // Retrieve existing JSON submissions
+  // Load previously saved submissions
   loadStars();
 });

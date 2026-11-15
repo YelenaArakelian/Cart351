@@ -509,18 +509,17 @@ select:focus-visible {
 
 #skySection {
   position: relative;
-
   width: 100%;
   min-height: 100vh;
-
   overflow: hidden;
 
-  background: radial-gradient(
-    ellipse at center,
-    #19294b 0%,
-    #0c1730 55%,
-    #070d20 100%
-  );
+  background-image:
+    linear-gradient(rgba(5, 10, 28, 0.15), rgba(5, 10, 28, 0.3)),
+    url("../images/collective-sky-shooting-stars.gif");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Sky navigation */
@@ -733,12 +732,19 @@ select:focus-visible {
 #skyMessage {
   position: relative;
   z-index: 2;
-
   text-align: center;
+  color: #d8c6ff;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 20px auto;
+  max-width: 650px;
 
-  color: #b6a8d9;
+  text-shadow: 0 0 12px rgba(182, 168, 217, 0.5);
 }
 
+#skyMessage:empty {
+  display: none;
+}
 /*
    MOBILE SKY
  */
@@ -768,4 +774,70 @@ select:focus-visible {
     width: 13px;
     height: 13px;
   }
+}
+
+/* ========================================
+   CONSTELLATION CONNECTIONS
+======================================== */
+
+/* SVG layer containing constellation lines */
+
+.constellation-lines {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 0;
+
+  pointer-events: none;
+}
+
+/* Keep clickable stars above the lines */
+
+.data-star {
+  z-index: 1;
+}
+
+/* Animate the constellation lines */
+
+.constellation-line {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+
+  animation: drawConstellation 2.5s ease forwards;
+}
+
+@keyframes drawConstellation {
+  from {
+    stroke-dashoffset: 120;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .constellation-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Leave a Star background */
+
+body:has(#starFormSection:not([hidden])) {
+  background:
+    linear-gradient(rgba(5, 10, 30, 0.15), rgba(5, 10, 30, 0.25)),
+    url("../images/form-background.gif") center / cover no-repeat fixed;
+}
+
+/* Allow the animated background to show behind the form for cool effect */
+
+#starFormSection {
+  background: rgba(16, 27, 50, 0.78);
 }
