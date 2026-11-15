@@ -1,0 +1,771 @@
+/*
+   CONSTELLATIONS OF STRANGERS
+   MAIN STYLESHEET 
+*/
+
+/* GENERAL SETTINGS */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Custom website font */
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("../fonts/Remingtoned Type.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --night: #080f22;
+  --sky: #142b49;
+  --mountain: #285275;
+  --lavender: #b6a8d9;
+  --starlight: #e8e6ff;
+  --text: #f1efff;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  font-family: "MyCustomFont", Georgia, serif;
+  color: var(--text);
+  background: var(--night);
+}
+
+/* Hide inactive sections */
+
+[hidden] {
+  display: none !important;
+}
+
+/* 
+   HOMEPAGE
+ */
+
+#home {
+  position: relative;
+  isolation: isolate;
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px 100px;
+
+  text-align: center;
+
+  /* Animated galaxy background */
+  background-image:
+    linear-gradient(rgba(5, 10, 30, 0.15), rgba(5, 10, 30, 0.3)),
+    url("../images/galaxy.gif");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#home::before,
+#home::after {
+  display: none;
+}
+
+/* Homepage title */
+
+#home h1 {
+  position: relative;
+  z-index: 1;
+
+  max-width: 850px;
+  margin: 0 0 25px;
+
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: normal;
+  line-height: 1.15;
+  letter-spacing: 2px;
+
+  color: var(--starlight);
+
+  text-shadow:
+    0 2px 15px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(182, 168, 217, 0.35);
+
+  animation: fadeUp 1.2s ease-out both;
+}
+
+/* Homepage subtitle */
+
+#home p {
+  position: relative;
+  z-index: 1;
+
+  margin: 0 0 45px;
+
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-style: italic;
+  letter-spacing: 1px;
+
+  color: #e2e0f3;
+
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+
+  animation: fadeUp 1.5s ease-out both;
+}
+
+/* Homepage button  */
+
+#leaveStarBtn {
+  margin-bottom: 22px;
+}
+
+#exploreSkyBtn {
+  min-width: 185px;
+}
+
+#leaveStarBtn {
+  margin-bottom: 24px;
+  min-width: 185px;
+
+  animation: fadeUp 1.8s ease-out both;
+}
+
+#exploreSkyBtn {
+  min-width: 185px;
+
+  animation: fadeUp 2.1s ease-out both;
+}
+
+/*
+   GENERAL BUTTONS
+*/
+
+button {
+  padding: 14px 35px;
+
+  background: rgba(18, 29, 54, 0.85);
+  border: 1px solid var(--lavender);
+  border-radius: 3px;
+
+  color: var(--starlight);
+
+  font-family: "MyCustomFont", Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+button:hover {
+  background: #34436b;
+  border-color: #e5dcff;
+
+  box-shadow: 0 0 20px rgba(182, 168, 217, 0.25);
+
+  transform: translateY(-3px);
+}
+
+button:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #e5dcff;
+  outline-offset: 4px;
+}
+
+/* Homepage button */
+
+#leaveStarBtn {
+  position: relative;
+  z-index: 1;
+
+  background: rgba(14, 24, 49, 0.85);
+
+  border: 1px solid #c7b9ed;
+
+  padding: 16px 42px;
+
+  font-size: 16px;
+
+  box-shadow: 0 0 18px rgba(182, 168, 217, 0.15);
+
+  animation: fadeUp 1.8s ease-out both;
+}
+
+#leaveStarBtn:hover {
+  background: rgba(57, 70, 110, 0.95);
+
+  box-shadow: 0 0 25px rgba(182, 168, 217, 0.4);
+}
+
+/* 
+   LEAVE A STAR FORM PAGE
+*/
+
+#starFormSection {
+  position: relative;
+
+  width: min(90%, 620px);
+
+  margin: 8vh auto;
+  padding: 45px;
+
+  background: #101b32;
+
+  border: 2px solid #66769f;
+  border-radius: 2px;
+
+  box-shadow:
+    8px 8px 0 rgba(5, 10, 25, 0.7),
+    0 0 35px rgba(182, 168, 217, 0.08);
+
+  text-align: center;
+
+  animation: fadeUp 0.6s ease-out;
+}
+
+/* Decorative star above form */
+
+#starFormSection::before {
+  content: "✦";
+  display: block;
+
+  margin-bottom: 20px;
+
+  color: #b6a8d9;
+  font-size: 28px;
+
+  text-shadow: 0 0 15px rgba(182, 168, 217, 0.5);
+
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+/* Form title */
+
+#starFormSection h2 {
+  margin: 0 0 15px;
+
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: normal;
+  letter-spacing: 1px;
+
+  color: var(--starlight);
+}
+
+/* Form description */
+
+#starFormSection > p {
+  color: #b6bdd7;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Form layout */
+
+#starForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin-top: 35px;
+}
+
+/* Form labels */
+
+#starForm label {
+  margin-top: 8px;
+
+  text-align: left;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+
+  color: #d3d0ea;
+}
+
+/* 
+   TEXT AREA
+ */
+
+#thought {
+  width: 100%;
+  min-height: 150px;
+
+  padding: 18px;
+
+  background: #0b152a;
+
+  border: 1px solid #526184;
+  border-radius: 2px;
+
+  color: #f1efff;
+
+  font-family: "MyCustomFont", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+
+  resize: vertical;
+
+  transition: border-color 0.2s ease;
+}
+
+#thought::placeholder {
+  color: #818ca9;
+  font-style: italic;
+}
+
+#thought:focus {
+  outline: none;
+  border-color: #b6a8d9;
+}
+
+/* 
+   EMOTION SELECTOR
+*/
+
+#emotion {
+  width: 100%;
+
+  padding: 15px;
+
+  background: #0b152a;
+
+  border: 1px solid #526184;
+  border-radius: 2px;
+
+  color: #f1efff;
+
+  font-family: "MyCustomFont", Georgia, serif;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+#emotion:focus {
+  outline: none;
+  border-color: #b6a8d9;
+}
+
+/* 
+   FORM BUTTONS
+ */
+
+/* Submit button */
+
+#starForm button[type="submit"] {
+  margin-top: 20px;
+
+  background: #34436b;
+
+  border: 1px solid #a99cca;
+
+  padding: 16px 25px;
+
+  font-size: 16px;
+}
+
+#starForm button[type="submit"]:hover {
+  background: #495a86;
+
+  box-shadow: 0 0 20px rgba(182, 168, 217, 0.15);
+}
+
+/* Back button */
+
+#backBtn {
+  margin-top: 25px;
+
+  background: transparent;
+  border: none;
+
+  color: #9ca8c6;
+  font-size: 14px;
+
+  box-shadow: none;
+}
+
+#backBtn:hover {
+  color: white;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Submission confirmation message */
+
+#formMessage {
+  margin-top: 20px;
+
+  color: #c7b7ef;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Hide temporary list of submissions.
+ */
+
+#savedStars {
+  display: none;
+}
+
+/* 
+   ANIMATIONS
+*/
+
+/* Decorative star animation */
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.45;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Smooth entrance animation */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+======================================== */
+
+@media (max-width: 600px) {
+  #home {
+    padding: 30px 20px 100px;
+  }
+
+  #home h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  #home p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  #leaveStarBtn {
+    padding: 14px 30px;
+  }
+
+  #starFormSection {
+    width: 94%;
+
+    margin: 5vh auto;
+    padding: 30px 20px;
+  }
+
+  #starFormSection h2 {
+    font-size: 2rem;
+  }
+}
+
+/* 
+   ACCESSIBILITY
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* 
+   INTERACTIVE COLLECTIVE SKY
+*/
+
+#skySection {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background: radial-gradient(
+    ellipse at center,
+    #19294b 0%,
+    #0c1730 55%,
+    #070d20 100%
+  );
+}
+
+/* Sky navigation */
+
+.sky-header {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 25px 40px;
+}
+
+.sky-header h2 {
+  margin: 0;
+
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: normal;
+
+  color: #e8e6ff;
+}
+
+.sky-header button {
+  padding: 10px 20px;
+
+  font-size: 13px;
+
+  background: rgba(20, 35, 65, 0.7);
+}
+
+/* Introduction */
+
+.sky-description {
+  position: relative;
+  z-index: 2;
+
+  margin: 10px auto 0;
+  padding: 0 20px;
+
+  max-width: 600px;
+
+  text-align: center;
+  line-height: 1.6;
+
+  color: #adb9d6;
+  font-style: italic;
+}
+
+/* 
+   INTERACTIVE STAR/SKY
+ */
+
+#starfield {
+  position: relative;
+
+  width: 100%;
+  height: 65vh;
+  min-height: 400px;
+
+  overflow: hidden;
+
+  margin-top: 20px;
+}
+
+/* Individual user stars */
+
+.data-star {
+  position: absolute;
+
+  width: 10px;
+  height: 10px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: var(--star-color);
+
+  box-shadow:
+    0 0 8px var(--star-color),
+    0 0 18px var(--star-color),
+    0 0 30px var(--star-color);
+
+  cursor: pointer;
+
+  transform: translate(-50%, -50%);
+
+  animation: starPulse 3s ease-in-out infinite alternate;
+}
+
+.data-star:hover {
+  background: white;
+
+  box-shadow:
+    0 0 12px white,
+    0 0 25px var(--star-color),
+    0 0 45px var(--star-color);
+
+  transform: translate(-50%, -50%) scale(1.7);
+}
+
+/* Glowing animation */
+
+@keyframes starPulse {
+  from {
+    opacity: 0.55;
+
+    box-shadow:
+      0 0 5px var(--star-color),
+      0 0 12px var(--star-color);
+  }
+
+  to {
+    opacity: 1;
+
+    box-shadow:
+      0 0 12px var(--star-color),
+      0 0 25px var(--star-color),
+      0 0 40px var(--star-color);
+  }
+}
+
+/* 
+   SELECTED STAR DETAILS
+*/
+
+#starDetails {
+  position: fixed;
+  z-index: 10;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: min(90%, 460px);
+
+  padding: 40px;
+
+  background: #101b32;
+
+  border: 1px solid #8594bd;
+
+  box-shadow:
+    0 0 45px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(182, 168, 217, 0.1);
+
+  text-align: center;
+}
+
+#starDetails h3 {
+  margin: 0 0 25px;
+
+  font-size: 2rem;
+  font-weight: normal;
+
+  color: #e8e6ff;
+}
+
+#selectedThought {
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.8;
+
+  color: #e1dff0;
+
+  overflow-wrap: anywhere;
+}
+
+#selectedEmotion {
+  display: inline-block;
+
+  margin-top: 20px;
+
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Close details */
+
+#closeDetailsBtn {
+  position: absolute;
+
+  top: 12px;
+  right: 15px;
+
+  padding: 5px 12px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 25px;
+
+  box-shadow: none;
+}
+
+#closeDetailsBtn:hover {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Status messages */
+
+#skyMessage {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+
+  color: #b6a8d9;
+}
+
+/*
+   MOBILE SKY
+ */
+
+@media (max-width: 600px) {
+  .sky-header {
+    padding: 20px 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .sky-header h2 {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .sky-header button {
+    padding: 10px 14px;
+  }
+
+  #starDetails {
+    padding: 35px 20px;
+  }
+
+  .data-star {
+    width: 13px;
+    height: 13px;
+  }
+}

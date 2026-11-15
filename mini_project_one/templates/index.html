@@ -19,9 +19,11 @@
       <p>Somewhere, someone feels the same way you do.</p>
 
       <button id="leaveStarBtn">Leave a Star</button>
+
+      <button id="exploreSkyBtn">Explore the Sky</button>
     </main>
 
-    <!-- Star submission form -->
+    <!-- Star letter -->
     <section id="starFormSection" hidden>
       <h2>Leave a Star</h2>
 
@@ -62,6 +64,38 @@
       </div>
 
       <p id="formMessage" role="status"></p>
+    </section>
+
+    <!-- Interactive Sky -->
+    <section id="skySection" hidden>
+      <header class="sky-header">
+        <button id="skyBackBtn">← Home</button>
+
+        <h2>The Collective Sky</h2>
+
+        <button id="skyLeaveBtn">+ Leave a Star</button>
+      </header>
+
+      <p class="sky-description">
+        Every star represents a thought left by a stranger. Select a star to
+        discover its story.
+      </p>
+
+      <!-- Stars will be created here using JavaScript -->
+      <div id="starfield"></div>
+
+      <!-- Selected star details -->
+      <div id="starDetails" hidden>
+        <button id="closeDetailsBtn" aria-label="Close star details">×</button>
+
+        <h3>A Stranger's Star</h3>
+
+        <p id="selectedThought"></p>
+
+        <span id="selectedEmotion"></span>
+      </div>
+
+      <p id="skyMessage" role="status"></p>
     </section>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
