@@ -16,18 +16,22 @@
     <main id="home">
       <h1>Constellations of Strangers</h1>
 
-      <p>Somewhere, someone feels the same way you do.</p>
+      <p>A shared space for anonymous thoughts and emotions.</p>
 
-      <button id="leaveStarBtn">Leave a Star</button>
+      <div class="home-buttons">
+        <button id="leaveStarBtn">Leave a Star</button>
+        <button id="exploreSkyBtn">Explore the Sky</button>
+      </div>
+      <button id="aboutBtn">About</button>
 
-      <button id="exploreSkyBtn">Explore the Sky</button>
+      <footer class="home-credit">© 2026 Yelena Arakelian · CART 351</footer>
     </main>
 
     <!-- Star letter -->
     <section id="starFormSection" hidden>
       <h2>Leave a Star</h2>
 
-      <p>Share an anonymous thought with the sky.</p>
+      <p>Share a thought and choose the emotion that represents it.</p>
 
       <form id="starForm">
         <label for="thought">What's on your mind?</label>
@@ -77,8 +81,7 @@
       </header>
 
       <p class="sky-description">
-        Every star represents a thought left by a stranger. Select a star to
-        discover its story.
+        Each star represents an anonymous submission. Select a star to read it.
       </p>
 
       <!-- Message displayed after submitting a star -->
@@ -100,6 +103,29 @@
 
       <p id="skyMessage" role="status"></p>
     </section>
+
+    <!-- About window -->
+    <dialog id="aboutDialog">
+      <h2>About This Project</h2>
+
+      <p>
+        Constellations of Strangers is an interactive project that collects and
+        visualizes anonymous thoughts and emotions.
+      </p>
+
+      <p>
+        Each submission becomes a star in a collective sky. Stars are colored
+        and connected based on their selected emotions, creating a visual
+        representation of shared experiences.
+      </p>
+
+      <p>
+        The project explores how personal information can be collected,
+        categorized, and represented through data.
+      </p>
+
+      <button id="closeAboutBtn">Close</button>
+    </dialog>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>

@@ -1,15 +1,4 @@
-/*
-   CONSTELLATIONS OF STRANGERS
-   MAIN STYLESHEET 
-*/
-
-/* GENERAL SETTINGS */
-
-* {
-  box-sizing: border-box;
-}
-
-/* Custom website font */
+/* Constellations of Strangers */
 
 @font-face {
   font-family: "MyCustomFont";
@@ -21,154 +10,46 @@
 
 :root {
   --night: #080f22;
-  --sky: #142b49;
-  --mountain: #285275;
   --lavender: #b6a8d9;
   --starlight: #e8e6ff;
   --text: #f1efff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  min-height: 100%;
+  min-height: 700px;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 700px;
   overflow-x: hidden;
-
   font-family: "MyCustomFont", Georgia, serif;
   color: var(--text);
   background: var(--night);
 }
 
-/* Hide inactive sections */
-
+/* Hide elements with the hidden attribute */
 [hidden] {
   display: none !important;
 }
 
-/* 
-   HOMEPAGE
- */
-
-#home {
-  position: relative;
-  isolation: isolate;
-
-  min-height: 100vh;
-  min-height: 100svh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  padding: 40px 20px 100px;
-
-  text-align: center;
-
-  /* Animated galaxy background */
-  background-image:
-    linear-gradient(rgba(5, 10, 30, 0.15), rgba(5, 10, 30, 0.3)),
-    url("../images/galaxy.gif");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#home::before,
-#home::after {
-  display: none;
-}
-
-/* Homepage title */
-
-#home h1 {
-  position: relative;
-  z-index: 1;
-
-  max-width: 850px;
-  margin: 0 0 25px;
-
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: normal;
-  line-height: 1.15;
-  letter-spacing: 2px;
-
-  color: var(--starlight);
-
-  text-shadow:
-    0 2px 15px rgba(0, 0, 0, 0.7),
-    0 0 30px rgba(182, 168, 217, 0.35);
-
-  animation: fadeUp 1.2s ease-out both;
-}
-
-/* Homepage subtitle */
-
-#home p {
-  position: relative;
-  z-index: 1;
-
-  margin: 0 0 45px;
-
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  font-style: italic;
-  letter-spacing: 1px;
-
-  color: #e2e0f3;
-
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-
-  animation: fadeUp 1.5s ease-out both;
-}
-
-/* Homepage button  */
-
-#leaveStarBtn {
-  margin-bottom: 22px;
-}
-
-#exploreSkyBtn {
-  min-width: 185px;
-}
-
-#leaveStarBtn {
-  margin-bottom: 24px;
-  min-width: 185px;
-
-  animation: fadeUp 1.8s ease-out both;
-}
-
-#exploreSkyBtn {
-  min-width: 185px;
-
-  animation: fadeUp 2.1s ease-out both;
-}
-
-/*
-   GENERAL BUTTONS
-*/
-
+/* Buttons used throughout the site */
 button {
   padding: 14px 35px;
-
   background: rgba(18, 29, 54, 0.85);
   border: 1px solid var(--lavender);
   border-radius: 3px;
-
   color: var(--starlight);
-
   font-family: "MyCustomFont", Georgia, serif;
   font-size: 15px;
   letter-spacing: 1px;
-
   cursor: pointer;
-
   transition:
     background 0.25s ease,
     border-color 0.25s ease,
@@ -179,9 +60,7 @@ button {
 button:hover {
   background: #34436b;
   border-color: #e5dcff;
-
   box-shadow: 0 0 20px rgba(182, 168, 217, 0.25);
-
   transform: translateY(-3px);
 }
 
@@ -192,138 +71,178 @@ select:focus-visible {
   outline-offset: 4px;
 }
 
-/* Homepage button */
-
-#leaveStarBtn {
-  position: relative;
-  z-index: 1;
-
-  background: rgba(14, 24, 49, 0.85);
-
-  border: 1px solid #c7b9ed;
-
-  padding: 16px 42px;
-
-  font-size: 16px;
-
-  box-shadow: 0 0 18px rgba(182, 168, 217, 0.15);
-
-  animation: fadeUp 1.8s ease-out both;
+/* Homepage */
+#home {
+  position: fixed;
+  inset: 0;
+  isolation: isolate;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 100px;
+  text-align: center;
+  background-image:
+    linear-gradient(rgba(5, 10, 30, 0.15), rgba(5, 10, 30, 0.3)),
+    url("../images/galaxy.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-#leaveStarBtn:hover {
-  background: rgba(57, 70, 110, 0.95);
+#home h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  margin: 0 0 25px;
+  color: #c5b5e8;
+  font-size: 80px;
+  font-weight: normal;
+  line-height: 1.15;
+  letter-spacing: 2px;
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.65),
+    0 0 18px rgba(155, 135, 210, 0.15);
+  animation: fadeUp 1.2s ease-out both;
+}
 
+#home p {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 45px;
+  color: #b7c5e2;
+  font-size: 21px;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  animation: fadeUp 1.5s ease-out both;
+}
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Both homepage buttons share exactly the same appearance. */
+#leaveStarBtn,
+#exploreSkyBtn {
+  position: relative;
+  z-index: 1;
+  width: 300px;
+  min-height: 80px;
+  margin: 0;
+  padding: 16px 30px;
+  background: rgba(14, 24, 49, 0.88);
+  border: 1px solid #c7b9ed;
+  border-radius: 3px;
+  color: #ded5f5;
+  font-size: 16px;
+  box-shadow: 0 0 18px rgba(182, 168, 217, 0.15);
+}
+
+#leaveStarBtn:hover,
+#exploreSkyBtn:hover {
+  background: rgba(57, 70, 110, 0.95);
+  border-color: #e5dcff;
   box-shadow: 0 0 25px rgba(182, 168, 217, 0.4);
 }
 
-/* 
-   LEAVE A STAR FORM PAGE
-*/
+#leaveStarBtn {
+  animation: fadeUp 1.8s ease-out both;
+}
+
+#exploreSkyBtn {
+  animation: fadeUp 2.1s ease-out both;
+}
+
+/* Leave a Star page */
+body:has(#starFormSection:not([hidden])) {
+  background:
+    linear-gradient(rgba(5, 10, 30, 0.15), rgba(5, 10, 30, 0.25)),
+    url("../images/form-background.gif") center / cover no-repeat fixed;
+}
 
 #starFormSection {
   position: relative;
-
-  width: min(90%, 620px);
-
-  margin: 8vh auto;
-  padding: 45px;
-
-  background: #101b32;
-
-  border: 2px solid #66769f;
-  border-radius: 2px;
-
+  width: 560px;
+  margin: 24px auto;
+  padding: 25px 35px;
+  background: rgba(12, 20, 43, 0.88);
+  border: 1px solid rgba(182, 168, 217, 0.5);
+  border-radius: 4px;
   box-shadow:
-    8px 8px 0 rgba(5, 10, 25, 0.7),
-    0 0 35px rgba(182, 168, 217, 0.08);
-
+    0 0 35px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(182, 168, 217, 0.08);
   text-align: center;
-
   animation: fadeUp 0.6s ease-out;
 }
-
-/* Decorative star above form */
 
 #starFormSection::before {
   content: "✦";
   display: block;
-
-  margin-bottom: 20px;
-
-  color: #b6a8d9;
-  font-size: 28px;
-
+  margin-bottom: 2px;
+  color: var(--lavender);
+  font-size: 24px;
   text-shadow: 0 0 15px rgba(182, 168, 217, 0.5);
-
   animation: twinkle 3s ease-in-out infinite alternate;
 }
 
-/* Form title */
-
 #starFormSection h2 {
-  margin: 0 0 15px;
+  margin: 0 0 8px;
 
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 40px;
   font-weight: normal;
   letter-spacing: 1px;
 
-  color: var(--starlight);
+  color: #e0d4ff;
+
+  text-shadow:
+    0 0 8px rgba(210, 190, 255, 0.8),
+    0 0 18px rgba(182, 148, 255, 0.5),
+    0 0 30px rgba(155, 125, 230, 0.25);
 }
 
-/* Form description */
-
 #starFormSection > p {
+  margin: 6px 0;
   color: #b6bdd7;
   font-style: italic;
   line-height: 1.6;
 }
 
-/* Form layout */
-
 #starForm {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-
-  margin-top: 35px;
+  gap: 10px;
+  margin-top: 16px;
 }
 
-/* Form labels */
-
 #starForm label {
-  margin-top: 8px;
-
+  margin-top: 3px;
+  color: #d3d0ea;
   text-align: left;
   font-size: 15px;
   letter-spacing: 0.5px;
-
-  color: #d3d0ea;
 }
 
-/* 
-   TEXT AREA
- */
-
-#thought {
-  width: 100%;
-  min-height: 150px;
-
-  padding: 18px;
-
+#thought,
+#emotion {
+  width: auto;
   background: #0b152a;
-
   border: 1px solid #526184;
   border-radius: 2px;
-
   color: #f1efff;
-
   font-family: "MyCustomFont", Georgia, serif;
   font-size: 16px;
+}
+
+#thought {
+  min-height: 105px;
+  padding: 12px 15px;
   line-height: 1.6;
-
   resize: vertical;
-
   transition: border-color 0.2s ease;
 }
 
@@ -332,73 +251,39 @@ select:focus-visible {
   font-style: italic;
 }
 
-#thought:focus {
-  outline: none;
-  border-color: #b6a8d9;
-}
-
-/* 
-   EMOTION SELECTOR
-*/
-
 #emotion {
-  width: 100%;
-
-  padding: 15px;
-
-  background: #0b152a;
-
-  border: 1px solid #526184;
-  border-radius: 2px;
-
-  color: #f1efff;
-
-  font-family: "MyCustomFont", Georgia, serif;
+  padding: 11px 15px;
   font-size: 15px;
-
   cursor: pointer;
 }
 
+#thought:focus,
 #emotion:focus {
   outline: none;
-  border-color: #b6a8d9;
+  border-color: var(--lavender);
 }
 
-/* 
-   FORM BUTTONS
- */
-
-/* Submit button */
-
 #starForm button[type="submit"] {
-  margin-top: 20px;
-
-  background: #34436b;
-
-  border: 1px solid #a99cca;
-
-  padding: 16px 25px;
-
+  margin-top: 12px;
+  padding: 14px 25px;
+  background: rgba(121, 104, 166, 0.55);
+  border: 1px solid #b6a8d9;
+  border-radius: 3px;
+  color: #f1eaff;
   font-size: 16px;
 }
 
 #starForm button[type="submit"]:hover {
-  background: #495a86;
-
-  box-shadow: 0 0 20px rgba(182, 168, 217, 0.15);
+  background: rgba(147, 125, 195, 0.7);
+  box-shadow: 0 0 20px rgba(182, 168, 217, 0.35);
 }
 
-/* Back button */
-
 #backBtn {
-  margin-top: 25px;
-
+  margin-top: 14px;
   background: transparent;
   border: none;
-
   color: #9ca8c6;
   font-size: 14px;
-
   box-shadow: none;
 }
 
@@ -408,111 +293,23 @@ select:focus-visible {
   box-shadow: none;
 }
 
-/* Submission confirmation message */
-
 #formMessage {
   margin-top: 20px;
-
   color: #c7b7ef;
   font-size: 15px;
   line-height: 1.6;
 }
 
-/* Hide temporary list of submissions.
- */
-
+/* Saved Stars */
 #savedStars {
   display: none;
 }
 
-/* 
-   ANIMATIONS
-*/
-
-/* Decorative star animation */
-
-@keyframes twinkle {
-  0% {
-    opacity: 0.45;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Smooth entrance animation */
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========================================
-   MOBILE RESPONSIVENESS
-======================================== */
-
-@media (max-width: 600px) {
-  #home {
-    padding: 30px 20px 100px;
-  }
-
-  #home h1 {
-    font-size: 2.5rem;
-    letter-spacing: 1px;
-  }
-
-  #home p {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  #leaveStarBtn {
-    padding: 14px 30px;
-  }
-
-  #starFormSection {
-    width: 94%;
-
-    margin: 5vh auto;
-    padding: 30px 20px;
-  }
-
-  #starFormSection h2 {
-    font-size: 2rem;
-  }
-}
-
-/* 
-   ACCESSIBILITY
-*/
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* 
-   INTERACTIVE COLLECTIVE SKY
-*/
-
+/* Collective Sky */
 #skySection {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
+  position: fixed;
+  inset: 0;
   overflow: hidden;
-
   background-image:
     linear-gradient(rgba(5, 10, 28, 0.15), rgba(5, 10, 28, 0.3)),
     url("../images/collective-sky-shooting-stars.gif");
@@ -522,203 +319,210 @@ select:focus-visible {
   background-repeat: no-repeat;
 }
 
-/* Sky navigation */
-
 .sky-header {
   position: relative;
   z-index: 5;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 20px;
-
-  padding: 25px 40px;
+  padding: 12px 40px;
 }
 
 .sky-header h2 {
   margin: 0;
+  padding: 4px 20px;
 
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: 35px;
   font-weight: normal;
 
-  color: #e8e6ff;
-}
+  color: #e0d4ff;
 
+  text-shadow:
+    0 0 8px rgba(210, 190, 255, 0.8),
+    0 0 18px rgba(182, 148, 255, 0.5),
+    0 0 30px rgba(155, 125, 230, 0.25);
+}
 .sky-header button {
-  padding: 10px 20px;
-
-  font-size: 13px;
-
+  padding: 4px 20px;
   background: rgba(20, 35, 65, 0.7);
+  font-size: 13px;
 }
-
-/* Introduction */
 
 .sky-description {
+  width: 650px;
+  margin: 0 auto;
+  padding: 5px 20px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #c1cce5;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(182, 168, 217, 0.25);
+}
+
+#skyMessage {
   position: relative;
   z-index: 2;
-
-  margin: 10px auto 0;
-  padding: 0 20px;
-
-  max-width: 600px;
-
-  text-align: center;
+  max-width: 650px;
+  margin: 20px auto;
+  color: #d8c6ff;
+  font-size: 18px;
   line-height: 1.6;
-
-  color: #adb9d6;
-  font-style: italic;
+  text-align: center;
+  text-shadow: 0 0 12px rgba(182, 168, 217, 0.5);
 }
 
-/* 
-   INTERACTIVE STAR/SKY
- */
+#skyMessage:empty {
+  display: none;
+}
 
 #starfield {
-  position: relative;
-
-  width: 100%;
-  height: 65vh;
-  min-height: 400px;
-
+  position: absolute;
+  top: 210px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: hidden;
-
-  margin-top: 20px;
 }
 
-/* Individual user stars */
+/* Clickable star area */
 
 .data-star {
   position: absolute;
+  z-index: 1;
 
-  width: 10px;
-  height: 10px;
-
+  width: 28px;
+  height: 28px;
   padding: 0;
 
+  background: transparent;
   border: none;
-  border-radius: 50%;
-
-  background: var(--star-color);
-
-  box-shadow:
-    0 0 8px var(--star-color),
-    0 0 18px var(--star-color),
-    0 0 30px var(--star-color);
+  border-radius: 999px;
 
   cursor: pointer;
 
-  transform: translate(-50%, -50%);
+  transform: translate(-14px, -14px);
+  animation: none;
+}
+
+/* Visible glowing circle */
+
+.data-star::before {
+  content: "";
+
+  position: absolute;
+  top: 8px;
+  left: 8px;
+
+  width: 12px;
+  height: 12px;
+
+  background: var(--star-color);
+  border-radius: 999px;
+
+  box-shadow:
+    0 0 6px var(--star-color),
+    0 0 14px var(--star-color);
 
   animation: starPulse 3s ease-in-out infinite alternate;
 }
 
+/* Star hover */
+
 .data-star:hover {
+  background: transparent;
+  box-shadow: none;
+  transform: translate(-14px, -14px);
+}
+
+.data-star:hover::before {
   background: white;
 
   box-shadow:
-    0 0 12px white,
-    0 0 25px var(--star-color),
-    0 0 45px var(--star-color);
-
-  transform: translate(-50%, -50%) scale(1.7);
+    0 0 10px white,
+    0 0 20px var(--star-color);
 }
 
-/* Glowing animation */
-
-@keyframes starPulse {
-  from {
-    opacity: 0.55;
-
-    box-shadow:
-      0 0 5px var(--star-color),
-      0 0 12px var(--star-color);
-  }
-
-  to {
-    opacity: 1;
-
-    box-shadow:
-      0 0 12px var(--star-color),
-      0 0 25px var(--star-color),
-      0 0 40px var(--star-color);
-  }
+.constellation-lines {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-/* 
-   SELECTED STAR DETAILS
-*/
+.constellation-line {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: drawConstellation 2.5s ease forwards;
+}
 
+/* Popup when a visitor clicks a star */
 #starDetails {
   position: fixed;
   z-index: 10;
-
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: min(90%, 460px);
-
+  inset: 0;
+  width: 460px;
+  height: 360px;
+  margin: auto;
   padding: 40px;
-
+  overflow-y: auto;
   background: #101b32;
-
   border: 1px solid #8594bd;
-
   box-shadow:
-    0 0 45px rgba(0, 0, 0, 0.7),
-    0 0 25px rgba(182, 168, 217, 0.1);
-
+    0 0 40px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(182, 168, 217, 0.12);
   text-align: center;
+}
+
+@media (max-width: 380px) {
+  #starFormSection {
+    width: 290px;
+    padding: 20px 16px;
+  }
+
+  #starDetails {
+    width: 290px;
+    padding: 30px 16px;
+  }
 }
 
 #starDetails h3 {
   margin: 0 0 25px;
-
-  font-size: 2rem;
-  font-weight: normal;
-
   color: #e8e6ff;
+  font-size: 32px;
+  font-weight: normal;
 }
 
 #selectedThought {
-  font-size: 1.2rem;
+  color: #e1dff0;
+  font-size: 19px;
   font-style: italic;
   line-height: 1.8;
-
-  color: #e1dff0;
-
   overflow-wrap: anywhere;
 }
 
 #selectedEmotion {
   display: inline-block;
-
   margin-top: 20px;
-
   font-size: 14px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-/* Close details */
-
 #closeDetailsBtn {
   position: absolute;
-
   top: 12px;
   right: 15px;
-
   padding: 5px 12px;
-
-  border: none;
   background: transparent;
-
+  border: none;
   font-size: 25px;
-
   box-shadow: none;
 }
 
@@ -727,29 +531,89 @@ select:focus-visible {
   box-shadow: none;
 }
 
-/* Status messages */
-
-#skyMessage {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: #d8c6ff;
-  font-size: 18px;
-  line-height: 1.6;
-  margin: 20px auto;
-  max-width: 650px;
-
-  text-shadow: 0 0 12px rgba(182, 168, 217, 0.5);
+/* Animations */
+@keyframes twinkle {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-#skyMessage:empty {
-  display: none;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-/*
-   MOBILE SKY
- */
 
-@media (max-width: 600px) {
+@keyframes starPulse {
+  from {
+    opacity: 0.55;
+    box-shadow:
+      0 0 5px var(--star-color),
+      0 0 12px var(--star-color);
+  }
+  to {
+    opacity: 1;
+    box-shadow:
+      0 0 12px var(--star-color),
+      0 0 25px var(--star-color),
+      0 0 40px var(--star-color);
+  }
+}
+
+@keyframes drawConstellation {
+  from {
+    stroke-dashoffset: 120;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Small screens */
+@media (max-width: 650px) {
+  #home {
+    width: 300px;
+    padding: 10px 15px;
+  }
+
+  #home h1 {
+    font-size: 40px;
+    letter-spacing: 1px;
+  }
+
+  #home p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .home-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #leaveStarBtn,
+  #exploreSkyBtn {
+    width: 270px;
+  }
+
+  #starFormSection {
+    width: 340px;
+    margin: 14px auto;
+    padding: 24px 20px;
+  }
+
+  #starFormSection h2 {
+    font-size: 32px;
+  }
+
   .sky-header {
     padding: 20px 15px;
     flex-wrap: wrap;
@@ -758,8 +622,9 @@ select:focus-visible {
 
   .sky-header h2 {
     order: -1;
-    width: 100%;
+    flex-basis: 600px;
     text-align: center;
+    font-size: 27px;
   }
 
   .sky-header button {
@@ -771,73 +636,216 @@ select:focus-visible {
   }
 
   .data-star {
-    width: 13px;
-    height: 13px;
+    width: 24px;
+    height: 24px;
+    transform: translate(-12px, -12px);
+  }
+
+  .data-star:hover {
+    transform: translate(-12px, -12px) scale(1.3);
   }
 }
 
-/* ========================================
-   CONSTELLATION CONNECTIONS
-======================================== */
-
-/* SVG layer containing constellation lines */
-
-.constellation-lines {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  z-index: 0;
-
-  pointer-events: none;
-}
-
-/* Keep clickable stars above the lines */
-
-.data-star {
-  z-index: 1;
-}
-
-/* Animate the constellation lines */
-
-.constellation-line {
-  stroke-dasharray: 120;
-  stroke-dashoffset: 120;
-
-  animation: drawConstellation 2.5s ease forwards;
-}
-
-@keyframes drawConstellation {
-  from {
-    stroke-dashoffset: 120;
+/* A little more room on shorter laptop screens. */
+@media (max-height: 700px) {
+  #home {
+    min-height: 550px;
   }
 
-  to {
-    stroke-dashoffset: 0;
+  #starFormSection {
+    margin: 10px auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  #starFormSection::before {
+    margin-bottom: 4px;
+  }
+
+  #starForm {
+    margin-top: 10px;
+    gap: 7px;
+  }
+
+  #thought {
+    min-height: 85px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
   .constellation-line {
-    animation: none;
     stroke-dashoffset: 0;
   }
 }
 
-/* Leave a Star background */
+/* About button */
 
-body:has(#starFormSection:not([hidden])) {
-  background:
-    linear-gradient(rgba(5, 10, 30, 0.15), rgba(5, 10, 30, 0.25)),
-    url("../images/form-background.gif") center / cover no-repeat fixed;
+#aboutBtn {
+  margin-top: 25px;
+  padding: 10px 30px;
+
+  background: transparent;
+  border: 1px solid #a99bcf;
+
+  color: #c5b5e8;
+  font-size: 14px;
 }
 
-/* Allow the animated background to show behind the form for cool effect */
+#aboutBtn:hover {
+  background: rgba(57, 70, 110, 0.6);
+  box-shadow: 0 0 15px rgba(182, 168, 217, 0.25);
+}
 
-#starFormSection {
-  background: rgba(16, 27, 50, 0.78);
+/* About popup */
+
+#aboutDialog {
+  width: 520px;
+  padding: 40px;
+  background: #101a32;
+  border: 1px solid #7785ad;
+  border-radius: 4px;
+  color: #e8e6ff;
+  text-align: left;
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(182, 168, 217, 0.1);
+}
+
+#aboutDialog::backdrop {
+  background: rgba(3, 7, 20, 0.8);
+}
+
+#aboutDialog h2 {
+  margin-top: 0;
+  color: #c5b5e8;
+  font-size: 30px;
+}
+
+#aboutDialog p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #b7c5e2;
+}
+
+#closeAboutBtn {
+  margin-top: 15px;
+}
+
+/* Small screens for About popup */
+@media (max-width: 550px) {
+  #aboutDialog {
+    width: 300px;
+    padding: 25px;
+  }
+}
+
+/* Footer on homepage */
+/* Homepage credit */
+
+.home-credit {
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+
+  color: #a9a4c7;
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  opacity: 0.8;
+}
+
+/* Mobile layout */
+
+@media (max-width: 650px) {
+  /* Homepage */
+
+  #home {
+    padding: 20px;
+  }
+
+  #home h1 {
+    font-size: 32px;
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+
+  #home p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .home-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #leaveStarBtn,
+  #exploreSkyBtn {
+    width: 270px;
+    min-height: 65px;
+  }
+
+  .home-credit {
+    bottom: 12px;
+    left: 12px;
+    font-size: 10px;
+  }
+
+  /* Collective Sky */
+
+  .sky-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    padding: 15px 12px;
+  }
+
+  .sky-header h2 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
+    font-size: 25px;
+    text-align: center;
+    padding: 5px;
+  }
+
+  #skyBackBtn {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  #skyLeaveBtn {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .sky-header button {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .sky-description {
+    width: auto;
+    max-width: 330px;
+
+    margin: 15px auto;
+    padding: 0 12px;
+
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  #starfield {
+    top: 230px;
+    bottom: 0;
+  }
 }

@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const backBtn = document.getElementById("backBtn");
   const skyBackBtn = document.getElementById("skyBackBtn");
   const skyLeaveBtn = document.getElementById("skyLeaveBtn");
+  const aboutBtn = document.getElementById("aboutBtn");
+  const aboutDialog = document.getElementById("aboutDialog");
+  const closeAboutBtn = document.getElementById("closeAboutBtn");
 
   // Form
   const starForm = document.getElementById("starForm");
@@ -28,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeDetailsBtn = document.getElementById("closeDetailsBtn");
   const skyMessage = document.getElementById("skyMessage");
 
+  // Check for missing elements
   const requiredElements = {
     home,
     formSection,
@@ -60,12 +64,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Colors for each emotion
   const emotionColors = {
-    hope: "#f5d995",
+    hope: "#95f5a3",
     joy: "#ffd4a8",
     nostalgia: "#c6a8f0",
     sadness: "#729bda",
-    loneliness: "#7895bc",
-    calm: "#91ded5",
+    loneliness: "#a1adbb",
+    calm: "#a4f3e9",
   };
 
   // ID of the most recently submitted star
@@ -107,6 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeDetailsBtn.addEventListener("click", () => {
     starDetails.hidden = true;
+  });
+
+  // Open and close the About window
+  aboutBtn.addEventListener("click", () => {
+    aboutDialog.showModal();
+  });
+
+  closeAboutBtn.addEventListener("click", () => {
+    aboutDialog.close();
   });
 
   // Generate a consistent position for each star
